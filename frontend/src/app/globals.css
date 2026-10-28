@@ -1,0 +1,19 @@
+@import "tailwindcss";
+/* Base font for the whole app */
+body { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+
+/* All form elements inherit the body font */
+button, input, select, textarea { font: inherit; }
+
+/* Active sidebar nav item — green highlight */
+.nav-active { background: #e8f5e9 !important; color: #176b43 !important; font-weight: 800; }
+
+/* Dark semi-transparent modal backdrop */
+.modal-backdrop { background: #09291999; }
+
+/* Hide scrollbar on filter row (still scrollable) */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { scrollbar-width: none; }
+
+/* Safe area padding for iPhone home bar */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
