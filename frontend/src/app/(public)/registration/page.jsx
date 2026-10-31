@@ -1,6 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 const HarvestLogo = () => (
   <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -21,19 +22,47 @@ const Field = ({ label, hint, children }) => (
 
 const inputCls = "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-500/15";
 
-export default function RegistrationPage() {
+function RegistrationForm() {
   const [showPw, setShowPw] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState('');
+  const searchParams = useSearchParams();
+  const refId = searchParams.get('refId') ?? '';
+
 
   function handleRegister(e) {
     e.preventDefault();
-    const form = e.target;
-    if (form.newpw.value !== form.confirm.value) {
-      setError('Passwords do not match');
-      return;
+
+    try {
+      const formData = new FormData(e.target);
+      const name = formData.get('name');
+      const phone = formData.get('phone');
+      const email = formData.get('email');
+      const referralCode = formData.get('ref');
+      const password = formData.get('newpw');
+      const confirmPassword = formData.get('confirm');
+
+      console.log({
+        name,
+        phone,
+        email,
+        referralCode,
+        password,
+        confirmPassword
+      });
+
+
+    } catch (e) {
+      console.error(e);
     }
-    window.location.href = '/dashboard';
+
+    // const form = e.target;
+
+    //   if (form.newpw.value !== form.confirm.value) {
+    //     setError('Passwords do not match');
+    //     return;
+    //   }
+    //   window.location.href = '/dashboard';
   }
 
   const EyeBtn = ({ show, toggle }) => (
@@ -106,7 +135,7 @@ export default function RegistrationPage() {
             </ul>
 
             <div className="mt-10 grid grid-cols-3 gap-4">
-              {[['10K+','Members'],['99%','Uptime'],['24/7','Support']].map(([n, l]) => (
+              {[['10K+', 'Members'], ['99%', 'Uptime'], ['24/7', 'Support']].map(([n, l]) => (
                 <div key={l} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm">
                   <p className="text-xl font-extrabold text-lime-300">{n}</p>
                   <p className="mt-0.5 text-xs text-white/50">{l}</p>
@@ -115,7 +144,7 @@ export default function RegistrationPage() {
             </div>
           </div>
 
-          <p className="relative z-10 text-xs text-white/30">© 2026 Harvest · Member portal</p>
+          <p className="relative z-10 text-xs text-white/30">© 2026 Maaza International · Member portal</p>
         </section>
 
         {/* ── Right form panel ── */}
@@ -125,34 +154,29 @@ export default function RegistrationPage() {
           <div className="relative overflow-hidden bg-[#0d3d26] px-6 pb-10 pt-8 lg:hidden">
             <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full border border-white/10" />
             <div className="absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-lime-400/10 blur-2xl" />
-            <a href="#" className="relative z-10 flex items-center gap-2.5 text-white">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-lime-300 text-[#0d3d26]">
-                <HarvestLogo />
-              </span>
-              <span className="text-xl font-extrabold">Harvest</span>
-            </a>
+
             <p className="relative z-10 mt-4 text-2xl font-extrabold text-white">Create account 🌱</p>
-            <p className="relative z-10 mt-1 text-sm text-white/60">Join Harvest and start your journey</p>
+            <p className="relative z-10 mt-1 text-sm text-white/60">Join Maaza International and start your journey</p>
           </div>
 
           {/* Form card */}
           <div className="flex flex-1 items-start justify-center px-4 py-8 sm:px-6 lg:items-center lg:px-10 xl:px-16">
-            <div className="w-full max-w-[440px]">
+            <div className="w-full ">
 
               {/* Desktop heading */}
               <div className="mb-8 hidden lg:block">
                 <p className="mb-2 text-xs font-bold uppercase tracking-widest text-emerald-600">Member portal</p>
                 <h2 className="text-3xl font-extrabold text-slate-900">Create account</h2>
-                <p className="mt-2 text-sm text-slate-500">Join Harvest and start managing your journey.</p>
+                <p className="mt-2 text-sm text-slate-500">Join Maaza International and start managing your journey.</p>
               </div>
 
               {/* Tab switcher */}
-              <div className="mb-6 grid grid-cols-2 gap-1 rounded-2xl bg-white p-1.5 shadow-sm ring-1 ring-slate-200">
+              <div className="mb-6 grid grid-cols-2 gap-1 rounded-2xl bg-white p-1.5 shadow-sm ring-1 ring-slate-300">
                 <Link href="/login"
-                  className="rounded-xl px-4 py-3 text-center text-sm font-semibold text-slate-400 transition hover:text-slate-700">
+                  className="rounded-xl px-4 py-3.5 text-center text-sm font-semibold text-slate-600 transition hover:text-slate-700">
                   Sign In
                 </Link>
-                <span className="rounded-xl bg-[#0d3d26] px-4 py-3 text-center text-sm font-bold text-white shadow-md">
+                <span className="rounded-xl bg-[#0d3d26] px-4 py-3.5 text-center text-sm font-bold text-white shadow-md">
                   Create Account
                 </span>
               </div>
@@ -172,15 +196,15 @@ export default function RegistrationPage() {
                   </div>
 
                   {/* Email */}
-                  <Field label="Email address" hint="optional">
+                  <Field label="Email address">
                     <input name="email" type="email" autoComplete="email" placeholder="you@example.com" className={inputCls} />
                   </Field>
 
                   {/* Referral */}
-                  <Field label="Referral code" hint="optional">
+                  <Field label="Referral code" hint={refId ? 'auto-filled' : 'optional'}>
                     <div className="relative">
-                      <input name="ref" placeholder="Enter referral code"
-                        className={`${inputCls} pl-10`} />
+                      <input name="ref" readOnly={!!refId} value={refId || undefined} defaultValue={refId || undefined} placeholder="Enter referral code"
+                        className={`${inputCls} pl-10 ${refId ? 'cursor-not-allowed bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200' : ''}`} />
                       <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400 text-sm">🎁</span>
                     </div>
                   </Field>
@@ -249,5 +273,13 @@ export default function RegistrationPage() {
 
       </div>
     </div>
+  );
+}
+
+export default function RegistrationPage() {
+  return (
+    <Suspense>
+      <RegistrationForm />
+    </Suspense>
   );
 }

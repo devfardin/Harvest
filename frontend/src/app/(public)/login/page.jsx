@@ -53,7 +53,7 @@ export default function LoginPage() {
             <span className="grid h-11 w-11 place-items-center rounded-2xl bg-lime-300 text-[#0d3d26] shadow-lg shadow-lime-400/30">
               <HarvestLogo />
             </span>
-            <span className="text-2xl font-extrabold tracking-tight">Harvest</span>
+            <span className="text-2xl font-extrabold tracking-tight">Maaza International</span>
           </a>
 
           {/* Hero text */}
@@ -75,7 +75,7 @@ export default function LoginPage() {
             {/* Social proof */}
             <div className="mt-10 flex items-center gap-4">
               <div className="flex -space-x-3">
-                {[['A','amber'],['M','sky'],['S','rose']].map(([l, c]) => (
+                {[['A', 'amber'], ['M', 'sky'], ['S', 'rose']].map(([l, c]) => (
                   <span key={l} className={`grid h-10 w-10 place-items-center rounded-full border-2 border-[#0d3d26] bg-${c}-200 text-sm font-bold text-${c}-900`}>{l}</span>
                 ))}
               </div>
@@ -87,7 +87,7 @@ export default function LoginPage() {
 
             {/* Stats row */}
             <div className="mt-10 grid grid-cols-3 gap-4">
-              {[['3K+','Members'],['99%','Uptime'],['24/7','Support']].map(([n, l]) => (
+              {[['3K+', 'Members'], ['99%', 'Uptime'], ['24/7', 'Support']].map(([n, l]) => (
                 <div key={l} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm">
                   <p className="text-xl font-extrabold text-lime-300">{n}</p>
                   <p className="mt-0.5 text-xs text-white/50">{l}</p>
@@ -96,7 +96,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <p className="relative z-10 text-xs text-white/30">© 2026 Harvest · Member portal</p>
+          <p className="relative z-10 text-xs text-white/30">© 2026 Maaza International · Member portal</p>
         </section>
 
         {/* ── Right form panel ── */}
@@ -106,34 +106,29 @@ export default function LoginPage() {
           <div className="relative overflow-hidden bg-[#0d3d26] px-6 pb-10 pt-8 lg:hidden">
             <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full border border-white/10" />
             <div className="absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-lime-400/10 blur-2xl" />
-            <a href="#" className="relative z-10 flex items-center gap-2.5 text-white">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-lime-300 text-[#0d3d26]">
-                <HarvestLogo />
-              </span>
-              <span className="text-xl font-extrabold">Harvest</span>
-            </a>
+
             <p className="relative z-10 mt-4 text-2xl font-extrabold text-white">Welcome back 👋</p>
-            <p className="relative z-10 mt-1 text-sm text-white/60">Sign in to your Harvest account</p>
+            <p className="relative z-10 mt-1 text-sm text-white/60">Sign in to your Maaza International account</p>
           </div>
 
           {/* Form card */}
           <div className="flex flex-1 items-start justify-center px-4 py-8 sm:px-6 lg:items-center lg:px-10 xl:px-16">
-            <div className="w-full max-w-[440px]">
+            <div className="w-full">
 
               {/* Desktop heading */}
               <div className="mb-8 hidden lg:block">
                 <p className="mb-2 text-xs font-bold uppercase tracking-widest text-emerald-600">Member portal</p>
                 <h2 className="text-3xl font-extrabold text-slate-900">Welcome back</h2>
-                <p className="mt-2 text-sm text-slate-500">Sign in to continue to your Harvest dashboard.</p>
+                <p className="mt-2 text-sm text-slate-500">Sign in to continue to your Maaza International dashboard.</p>
               </div>
 
               {/* Tab switcher */}
-              <div className="mb-6 grid grid-cols-2 gap-1 rounded-2xl bg-white p-1.5 shadow-sm ring-1 ring-slate-200">
-                <span className="rounded-xl bg-[#0d3d26] px-4 py-3 text-center text-sm font-bold text-white shadow-md">
+              <div className="mb-6 grid grid-cols-2 gap-1 rounded-2xl bg-white p-1.5 shadow-sm ring-1 ring-slate-300">
+                <span className="rounded-xl bg-[#0d3d26] px-4 py-3.5 text-center text-sm font-bold text-white shadow-md">
                   Sign In
                 </span>
                 <Link href="/registration"
-                  className="rounded-xl px-4 py-3 text-center text-sm font-semibold text-slate-400 transition hover:text-slate-700">
+                  className="rounded-xl px-4 py-3.5 text-center text-sm font-semibold text-slate-600 transition hover:text-slate-700">
                   Create Account
                 </Link>
               </div>
@@ -211,7 +206,7 @@ export default function LoginPage() {
                 </div>
 
                 <p className="mt-5 text-center text-sm text-slate-500">
-                  New to Harvest?{' '}
+                  New to Maaza International?{' '}
                   <Link href="/registration" className="font-bold text-emerald-700 hover:underline">
                     Create a free account
                   </Link>

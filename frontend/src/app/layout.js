@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Harvest',
-  description: 'Harvest — Grow with purpose',
+  title: 'Maaza International',
+  description: 'Maaza — Grow with purpose',
 };
 
 export default function RootLayout({ children }) {
